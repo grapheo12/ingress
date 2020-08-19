@@ -4,8 +4,15 @@ services:
   nginx:
     build: './'
     networks:
-      name: nginx_network
-
+      nginx_network:
+    volumes:
+      - nginx-volume:/srv/nginx
+      - static-volume:/srv/static
+    ports:
+      - "${SERVER_PORT:-8080}:80"
 networks:
   external:
-    nginx_network:
+    name: nginx_network
+volumes:
+  nginx-volume:
+  static-volume:
