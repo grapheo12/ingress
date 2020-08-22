@@ -1,0 +1,17 @@
+version: '2.1'
+
+services:
+  nginx:
+    build: './'
+    networks:
+      iqps_nginx-network:
+      metakgp-wiki_nginx-network:
+    ports:
+      - "80:80"
+networks:
+  iqps_nginx-network:
+    external:
+        name: iqps_nginx-network
+  metakgp-wiki_nginx-network:
+    external:
+        name: metakgp-wiki_nginx-network
