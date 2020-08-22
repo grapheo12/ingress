@@ -4,9 +4,14 @@ services:
   nginx:
     build: './'
     networks:
-      nginx_network:
+      iqps_nginx-network:
+      metakgp-wiki_nginx-network:
     ports:
-      - "${SERVER_PORT:-8080}:80"
+      - "80:80"
 networks:
-  external:
-    name: nginx_network
+  iqps_nginx-network:
+    external:
+        name: iqps_nginx-network
+  metakgp-wiki_nginx-network:
+    external:
+        name: metakgp-wiki_nginx-network

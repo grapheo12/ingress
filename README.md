@@ -12,23 +12,21 @@ As a root run:
 
 ```bash
 
-docker build --tag ingress .
-
-docker run --name metakgp-ingress --network="host" -d ingress
+docker-compose build
+docker-compose up -d
 ```
 
 This will make the ingress server listen on port 80.
 
 It assumes that:
 
-- IQPS is listening on port 8001.
-- MetaKGP-Wiki is listening on port 8002.
+- IQPS is listening on port 80 on the docker network `iqps_nginx-network`, it's nginx container's name is `iqps-nginx`.
+- MetaKGP-Wiki is listening on port 80 on the docker network `metakgp-wiki_nginx-network`, it's nginx container's name is `wiki-nginx`.
 
-Both on the host network.
+At least make sure those networks are created.
 If that is not the case, please change them accordingly in
 IQPS's `docker-compose.yml` and
-wiki's `.env` variable `SERVER_PORT`.
-
+wiki's `.env` variable `SERVER_PORT` and `docker-compose.prod.yml` and `docker-compose.override.yml`.
 
 ## Firewall Script
 
